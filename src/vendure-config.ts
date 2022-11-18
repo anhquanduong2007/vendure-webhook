@@ -5,7 +5,6 @@ import {
     VendureConfig,
     OrderEvent,
 } from '@vendure/core';
-import { WebhookPlugin } from 'vendure-plugin-webhook';
 import { defaultEmailHandlers, EmailPlugin } from '@vendure/email-plugin';
 import { AssetServerPlugin } from '@vendure/asset-server-plugin';
 import { AdminUiPlugin } from '@vendure/admin-ui-plugin';
@@ -85,24 +84,12 @@ export const config: VendureConfig = {
                 changeEmailAddressUrl: 'http://localhost:8080/verify-email-address-change'
             },
         }),
-        WebhookPlugin.init({
-            httpMethod: 'POST',
-            delay: 3000,
-            events: [OrderEvent],
-            requestFn: (event: any) => {
-                console.log(event)
-                return {
-                    headers: { test: '1234' },
-                    body: JSON.stringify({ order: event?.order }),
-                };
-            },
-        }),
         AdminUiPlugin.init({
             route: 'admin',
             port: 3002,
             app: compileUiExtensions({
                 outputPath: path.join(__dirname, '__admin-ui'),
-                extensions: [WebhookPlugin.ui],
+                extensions: [],
             })
         }),
     ],

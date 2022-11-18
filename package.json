@@ -3,13 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev:server": "ts-node ./src/index.ts",
-    "dev:worker": "ts-node ./src/index-worker.ts",
-    "dev": "concurrently yarn:dev:*",
-    "build": "tsc",
-    "start:server": "node ./dist/index.js",
-    "start:worker": "node ./dist/index-worker.js",
+    "start:server": "ts-node ./src/index.ts",
+    "start:worker": "ts-node ./src/index-worker.ts",
     "start": "concurrently yarn:start:*",
+    "build": "tsc",
+    "dev:server": "node ./dist/index.js",
+    "dev:worker": "node ./dist/index-worker.js",
+    "dev": "concurrently yarn:dev:*",
     "migration:generate": "ts-node migration generate",
     "migration:run": "ts-node migration run",
     "migration:revert": "ts-node migration revert"
@@ -22,8 +22,7 @@
     "@vendure/ui-devkit": "^1.7.2",
     "better-sqlite3": "7.6.2",
     "dotenv": "16.0.2",
-    "typescript": "4.3.5",
-    "vendure-plugin-webhook": "^3.13.0"
+    "typescript": "4.3.5"
   },
   "devDependencies": {
     "concurrently": "7.4.0",
